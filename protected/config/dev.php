@@ -7,7 +7,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Application',
-    'defaultController' => 'Home',
+    'defaultController' => 'mata/Home',
     // preloading 'log' component
     'language' => 'en',
     'preload' => array('log'),
@@ -15,6 +15,7 @@ return array(
     'import' => array(
         'application.models.base.*',
         'application.models.*',
+        'application.modules.project.models.*',
         'application.widgets.base.*',
         'application.components.*',
         'application.controllers.base.*',
@@ -29,18 +30,11 @@ return array(
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
-        'user' => array(
-            'hash' => 'sha1',
-            'sendActivationMail' => true,
-            'activeAfterRegister' => false,
-            'autoLogin' => true
-        ),
     ),
     // application components
     'components' => array(
         'user' => array(
-            // enable cookie-based authentication
-            'allowAutoLogin' => true,
+            'class' => 'application.components.WebUser',
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
@@ -50,25 +44,6 @@ return array(
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
-        ),
-        'icoCMSClient' => array(
-            "class" => "application.components.icoCMSClient.IcoCMSClient",
-            "projectKey" => "x",
-            'db' => array(
-                'connectionString' => 'mysql:host=109.123.107.147;port=3306;dbname=icocms',
-                'emulatePrepare' => true,
-                'username' => 'icocms',
-                'password' => 'icocms_h0td0g',
-                'charset' => 'utf8',
-                'enableParamLogging' => true
-            ),
-            "modules" => array(
-                "form" => array(
-                    "notificationRecipients" => array(
-                        "marcin.wiatr@icodesign.com"
-                    )
-                )
-            )
         ),
         'errorHandler' => array(
             // use 'site/error' action to display errors

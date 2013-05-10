@@ -20,9 +20,5 @@
         <div id="main">
             <?php echo $content; ?>
         </div>
-
-        <?php
-        Yii::app()->icoCMSClient->frontEndWidget();
-        ?>
     </body>
 </html>

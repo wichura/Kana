@@ -1,4 +1,7 @@
 <?php
+
+$application = dirname(__FILE__) . "/mata/components/MataWebApplication.php";
+
 // change the following paths if necessary
 $yii = dirname(__FILE__) . '/yii/framework/yii.php';
 
@@ -15,4 +18,5 @@ if (strripos($_SERVER['SERVER_NAME'], "localhost") == true || strrpos($_SERVER['
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);
 
 require_once($yii);
-Yii::createWebApplication($config)->run();
+require_once($application);
+Yii::createApplication("MataWebApplication", $config)->run();
