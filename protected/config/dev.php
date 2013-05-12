@@ -7,7 +7,6 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Application',
-    'defaultController' => 'mata/Home',
     // preloading 'log' component
     'language' => 'en',
     'preload' => array('log'),
@@ -45,9 +44,13 @@ return array(
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ),
-        'errorHandler' => array(
-            // use 'site/error' action to display errors
-            'errorAction' => 'site/error',
+        'matadb' => array(
+            'connectionString' => 'mysql:host=37.123.117.163;dbname=kana',
+            'emulatePrepare' => true,
+            'username' => 'kana',
+            'password' => 'tZDU3cwMDeyh8cyd',
+            'charset' => 'utf8',
+            'enableParamLogging' => true
         ),
         'log' => array(
             'class' => 'CLogRouter',

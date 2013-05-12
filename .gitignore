@@ -1,9 +1,5 @@
-assets/
 protected/runtime/
 themes/classic/views/
-<<<<<<< HEAD
 .DS_Store
 /nbproject/
-=======
-.DS_Store
->>>>>>> 87028fd86200242c95f1761477f22b354ac45669
+
