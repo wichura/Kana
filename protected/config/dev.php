@@ -13,11 +13,9 @@ return array(
     // autoloading model and component classes
     'import' => array(
         'application.models.base.*',
+        'application.controllers.*',
         'application.models.*',
-        'application.modules.project.models.*',
-        'application.widgets.base.*',
         'application.components.*',
-        'application.controllers.base.*',
         'application.helpers.*'
     ),
     'modules' => array(
@@ -29,6 +27,7 @@ return array(
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
+        'project'
     ),
     // application components
     'components' => array(

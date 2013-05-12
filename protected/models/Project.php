@@ -21,7 +21,7 @@
  * @property Cmsuser $modifierCMSUser
  * @property Projecttype $projectType
  */
-class Project extends MataActiveRecord {
+class Project extends MataCMSActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
