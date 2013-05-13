@@ -91,11 +91,13 @@ class Project extends MataActiveRecord {
         return array(
             'Id' => 'ID',
             'DateCreated' => 'Date Created',
-            'Name' => 'Name',
-            'ProjectTypeId' => 'Project Type',
+            'Name' => 'Nazwa',
+            'ProjectTypeId' => 'Typ Zajęcia',
             'ProjectKey' => 'Project Key',
-            'URI' => 'Website',
-            'ClientId' => 'Client',
+            "AgeGroupId" => "Grupa Wiekowa",
+            "SubjectTaughtId" => "Przedmiot",
+            "CourseTypeId" => "Rodzaj",
+            "CourseLevelId" => "Poziom",
             'Language' => 'Language',
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
@@ -170,7 +172,7 @@ class Project extends MataActiveRecord {
     }
 
     public function getSortableAttributes() {
-        return array("Name", "DateCreated", "SubjectTaughtId");
+        return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId", "CourseTypeId", "CourseLevelId");
     }
 
 
