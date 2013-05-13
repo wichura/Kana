@@ -28,7 +28,10 @@ return array(
             "active" => false
         ),
         'client',
-        'contentBlock'
+        'contentBlock',
+        'project' => array(
+            "class" => "application.modules.project.ProjectModule",
+        )
     ),
     'components' => array(
         'urlManager' => array(
