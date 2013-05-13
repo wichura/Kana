@@ -1,1 +1,0 @@
-Welcome to <?php echo Yii::app()->name ?>
