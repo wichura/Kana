@@ -58,14 +58,14 @@ class Project extends MataActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('Name, ProjectTypeId, ProjectKey, ClientId, CreatorUserId, ModifierUserId', 'required'),
-            array('Name, URI', 'length', 'max' => 255),
-            array('ProjectTypeId, ClientId', 'length', 'max' => 2),
+            array('Name, ProjectTypeId, ProjectKey, CreatorUserId, ModifierUserId, AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
+            array('Name', 'length', 'max' => 255),
+            array('ProjectTypeId', 'length', 'max' => 2),
             array('ProjectKey', 'length', 'max' => 32),
             array('Language', 'length', 'max' => 15),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, URI, ClientId, Language, DateModified, CreatorUserId, ModifierUserId', 'safe', 'on' => 'search'),
+            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, Language, DateModified, CreatorUserId, ModifierUserId', 'safe', 'on' => 'search'),
         );
     }
 
@@ -118,8 +118,6 @@ class Project extends MataActiveRecord {
         $criteria->compare('Name', $this->Name, true);
         $criteria->compare('ProjectTypeId', $this->ProjectTypeId, true);
         $criteria->compare('ProjectKey', $this->ProjectKey, true);
-        $criteria->compare('URI', $this->URI, true);
-        $criteria->compare('ClientId', $this->ClientId, true);
         $criteria->compare('Language', $this->Language, true);
         $criteria->compare('DateModified', $this->DateModified, true);
         $criteria->compare('CreatorUserId', $this->CreatorUserId, true);
@@ -130,7 +128,6 @@ class Project extends MataActiveRecord {
             $filter = $_GET["filter"];
 
             $criteria->compare("Name", $filter, true, "AND");
-            $criteria->compare("Uri", $filter, true, "OR");
         }
         
         $criteria->together = true;
@@ -173,7 +170,7 @@ class Project extends MataActiveRecord {
     }
 
     public function getSortableAttributes() {
-        return array("Name", "DateCreated", "URI");
+        return array("Name", "DateCreated", "SubjectTaughtId");
     }
 
 

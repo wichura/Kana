@@ -26,18 +26,29 @@
         <?php echo $form->dropDownList($model, "ProjectTypeId", CHtml::listData(ProjectType::model()->findAll(), "Id", "Name")) ?>
         <?php echo $form->error($model, 'ProjectTypeId'); ?>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'URI'); ?>
-        <?php echo $form->textField($model, 'URI', array('size' => 60, 'maxlength' => 255)); ?>
-        <?php echo $form->error($model, 'URI'); ?>
+    
+      <div class="row">
+        <?php echo $form->labelEx($model, 'CourseTypeId'); ?>
+        <?php echo $form->dropDownList($model, "CourseTypeId", CHtml::listData(CourseType::model()->findAll(), "Id", "Name")) ?>
+        <?php echo $form->error($model, 'CourseTypeId'); ?>
     </div>
 
     <div class="row">
-        <?php Yii::app()->getModule("client"); ?>
-        <?php echo $form->labelEx($model, 'ClientId'); ?>
-        <?php echo $form->dropDownList($model, "ClientId", CHtml::listData(Client::model()->findAll(), "Id", "Name")) ?>
-        <?php echo $form->error($model, 'ClientId'); ?>
+        <?php echo $form->labelEx($model, 'AgeGroupId'); ?>
+        <?php echo $form->dropDownList($model, "AgeGroupId", CHtml::listData(ProjectAgeGroup::model()->findAll(), "Id", "Name")) ?>
+        <?php echo $form->error($model, 'AgeGroupId'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'SubjectTaughtId'); ?>
+        <?php echo $form->dropDownList($model, "SubjectTaughtId", CHtml::listData(ProjectSubjectTaught::model()->findAll(), "Id", "Name")) ?>
+        <?php echo $form->error($model, 'SubjectTaughtId'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'CourseLevelId'); ?>
+        <?php echo $form->dropDownList($model, "CourseLevelId", CHtml::listData(ProjectCourseLevel::model()->findAll(), "Id", "Name")) ?>
+        <?php echo $form->error($model, 'CourseLevelId'); ?>
     </div>
 
     <div class="row">
