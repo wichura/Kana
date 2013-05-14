@@ -50,13 +50,6 @@
         <?php echo $form->dropDownList($model, "CourseLevelId", CHtml::listData(ProjectCourseLevel::model()->findAll(), "Id", "Name")) ?>
         <?php echo $form->error($model, 'CourseLevelId'); ?>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'Language'); ?>
-        <?php echo $form->textField($model, 'Language', array('size' => 15, 'maxlength' => 15)); ?>
-        <?php echo $form->error($model, 'Language'); ?>
-    </div>
-
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t("mata", "Create") : Yii::t("mata", "Update")); ?>
     </div>

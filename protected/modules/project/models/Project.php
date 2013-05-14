@@ -12,7 +12,6 @@
  * @property string $ProjectKey
  * @property string $URI
  * @property string $ClientId
- * @property string $Language
  *
  * The followings are the available model relations:
  * @property Client $client
@@ -62,10 +61,9 @@ class Project extends MataActiveRecord {
             array('Name', 'length', 'max' => 255),
             array('ProjectTypeId', 'length', 'max' => 2),
             array('ProjectKey', 'length', 'max' => 32),
-            array('Language', 'length', 'max' => 15),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, Language, DateModified, CreatorUserId, ModifierUserId', 'safe', 'on' => 'search'),
+            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, ModifierUserId', 'safe', 'on' => 'search'),
         );
     }
 
@@ -98,7 +96,6 @@ class Project extends MataActiveRecord {
             "SubjectTaughtId" => "Przedmiot",
             "CourseTypeId" => "Rodzaj",
             "CourseLevelId" => "Poziom",
-            'Language' => 'Language',
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
             'ModifierUserId' => 'Modifier Cmsuser',
@@ -120,7 +117,6 @@ class Project extends MataActiveRecord {
         $criteria->compare('Name', $this->Name, true);
         $criteria->compare('ProjectTypeId', $this->ProjectTypeId, true);
         $criteria->compare('ProjectKey', $this->ProjectKey, true);
-        $criteria->compare('Language', $this->Language, true);
         $criteria->compare('DateModified', $this->DateModified, true);
         $criteria->compare('CreatorUserId', $this->CreatorUserId, true);
         $criteria->compare('ModifierUserId', $this->ModifierUserId, true);
@@ -150,6 +146,7 @@ class Project extends MataActiveRecord {
 
         if ($this->isNewRecord) {
             $this->ProjectKey = new CDbExpression("REPLACE(UUID(), '-', '')");
+            $this->Language = "pl";
         }
 
         return parent::beforeValidate();

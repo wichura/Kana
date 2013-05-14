@@ -1,4 +1,4 @@
 Kana
 ====
 
-KANA Course Management System
+KANA Course Management Software
