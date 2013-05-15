@@ -30,7 +30,6 @@ class Project extends MataActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
 
     /**
      * @return string the associated database table name
@@ -57,13 +56,12 @@ class Project extends MataActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('Name, ProjectTypeId, ProjectKey, CreatorUserId, ModifierUserId, AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
-            array('Name', 'length', 'max' => 255),
+            array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
             array('ProjectTypeId', 'length', 'max' => 2),
             array('ProjectKey', 'length', 'max' => 32),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, ModifierUserId', 'safe', 'on' => 'search'),
+            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, SubjectTaughtId, CourseTypeId, CourseLevelId, ModifierUserId', 'safe', 'on' => 'search'),
         );
     }
 
@@ -78,7 +76,11 @@ class Project extends MataActiveRecord {
             'creatorCMSUser' => array(self::BELONGS_TO, 'Cmsuser', 'CreatorUserId'),
             'modifierCMSUser' => array(self::BELONGS_TO, 'Cmsuser', 'ModifierUserId'),
             'projectType' => array(self::BELONGS_TO, 'Projecttype', 'ProjectTypeId'),
-            'users' => array(self::MANY_MANY, 'User', 'userproject(UserId, ProjectId)')
+            'users' => array(self::MANY_MANY, 'User', 'userproject(UserId, ProjectId)'),
+            'subjectTaught' => array(self::BELONGS_TO, 'ProjectSubjectTaught', 'SubjectTaughtId'),
+            'courseType' => array(self::BELONGS_TO, 'ProjectCourseType', 'CourseTypeId'),
+            'subjectLevel' => array(self::BELONGS_TO, 'ProjectCourseLevel', 'CourseLevelId'),
+            'ageGroup' => array(self::BELONGS_TO, 'ProjectAgeGroup', 'AgeGroupId')
         );
     }
 
@@ -88,13 +90,13 @@ class Project extends MataActiveRecord {
     public function attributeLabels() {
         return array(
             'Id' => 'ID',
-            'DateCreated' => 'Date Created',
+            'DateCreated' => 'Data utworzenia',
             'Name' => 'Nazwa',
             'ProjectTypeId' => 'Typ Zajęcia',
             'ProjectKey' => 'Project Key',
             "AgeGroupId" => "Grupa Wiekowa",
             "SubjectTaughtId" => "Przedmiot",
-            "CourseTypeId" => "Rodzaj",
+            "CourseTypeId" => "Rodzaj Zajęcia",
             "CourseLevelId" => "Poziom",
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
@@ -121,19 +123,27 @@ class Project extends MataActiveRecord {
         $criteria->compare('CreatorUserId', $this->CreatorUserId, true);
         $criteria->compare('ModifierUserId', $this->ModifierUserId, true);
 
-
         if (isset($_GET["filter"]) && !empty($_GET["filter"])) {
             $filter = $_GET["filter"];
+            $criteria->compare("t.Name", $filter, true, "OR");
 
-            $criteria->compare("Name", $filter, true, "AND");
+            $criteria->with = array(
+                "subjectTaught", "projectType", "courseType", "subjectLevel", "ageGroup"
+            );
+
+            $criteria->addSearchCondition('subjectTaught.Name', $filter, true, "OR", "LIKE");
+            $criteria->addSearchCondition('projectType.Name', $filter, true, "OR", "LIKE");
+            $criteria->addSearchCondition('courseType.Name', $filter, true, "OR", "LIKE");
+            $criteria->addSearchCondition('subjectLevel.Name', $filter, true, "OR", "LIKE");
+            $criteria->addSearchCondition('ageGroup.Name', $filter, true, "OR", "LIKE");
         }
-        
+
         $criteria->together = true;
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             "sort" => array(
-                "defaultOrder" => "Name ASC"
+                "defaultOrder" => "t.Name ASC"
             )
         ));
     }
@@ -147,30 +157,39 @@ class Project extends MataActiveRecord {
         if ($this->isNewRecord) {
             $this->ProjectKey = new CDbExpression("REPLACE(UUID(), '-', '')");
             $this->Language = "pl";
+
+            $newId = Project::model()->dbConnection->createCommand("select MAX(Id) + 1 from " . $this->tableName())->queryRow();
+            $newId = str_pad(current($newId), 4, "0", STR_PAD_LEFT);
+
+            $this->Name = ProjectType::model()->findByPk($this->ProjectTypeId)->Code . "-" .
+                    ProjectCourseType::model()->findByPk($this->CourseTypeId)->Code . "-" .
+                    ProjectAgeGroup::model()->findByPk($this->AgeGroupId)->Code . "-" .
+                    ProjectSubjectTaught::model()->findByPk($this->SubjectTaughtId)->Code . "-" .
+                    ProjectCourseLevel::model()->findByPk($this->CourseLevelId)->Code . "-" .
+                    $newId;
         }
 
         return parent::beforeValidate();
     }
-    
+
     protected function afterSave() {
-        
+
         if ($this->isNewRecord) {
             $linking = new UserProject();
             $linking->attributes = array(
                 "ProjectId" => $this->Id,
                 "UserId" => Yii::app()->user->getId()
             );
-            
+
             if ($linking->save() == false)
                 throw new CHttpException("Could not create the linking between the new project and the user due to: " . $linking->getFirstError());
         }
-        
+
         parent::afterSave();
     }
 
     public function getSortableAttributes() {
-        return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId", "CourseTypeId", "CourseLevelId");
+        return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId", "CourseTypeId", "CourseLevelId", "ProjectType");
     }
-
 
 }

@@ -7,7 +7,7 @@
  * @property string $Id
  * @property string $Name
  */
-class CourseType extends MataActiveRecord {
+class ProjectCourseType extends MataActiveRecord {
 
     /**
      * Returns the static model of the specified AR class.
@@ -22,7 +22,7 @@ class CourseType extends MataActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'coursetype';
+        return 'projectcoursetype';
     }
 
     /**

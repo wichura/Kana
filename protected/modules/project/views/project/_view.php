@@ -5,9 +5,10 @@
             <hr />
             
             <ul class="horizontal">
-                <li><?php echo $data->getAttributeLabel("SubjectTaught") ?>: <?php echo ProjectSubjectTaught::model()->findByPk($data->SubjectTaughtId)->Name ?></li>
+                <li><?php echo $data->getAttributeLabel("ProjectTypeId") ?>: <?php echo ProjectType::model()->findByPk($data->ProjectTypeId)->Name ?></li>
+                <li><?php echo $data->getAttributeLabel("SubjectTaughtId") ?>: <?php echo ProjectSubjectTaught::model()->findByPk($data->SubjectTaughtId)->Name ?></li>
                 <li><?php echo $data->getAttributeLabel("AgeGroupId") ?>: <?php echo ProjectAgeGroup::model()->findByPk($data->AgeGroupId)->Name ?></li>
-                <li><?php echo $data->getAttributeLabel("CourseTypeId") ?>: <?php echo CourseType::model()->findByPk($data->CourseTypeId)->Name ?></li>
+                <li><?php echo $data->getAttributeLabel("CourseTypeId") ?>: <?php echo ProjectCourseType::model()->findByPk($data->CourseTypeId)->Name ?></li>
                 <li><?php echo $data->getAttributeLabel("CourseLevelId") ?>: <?php echo ProjectCourseLevel::model()->findByPk($data->CourseLevelId)->Name ?></li>
             </ul>
 
