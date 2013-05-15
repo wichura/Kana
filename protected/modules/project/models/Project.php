@@ -75,7 +75,7 @@ class Project extends MataActiveRecord {
             'client' => array(self::BELONGS_TO, 'Client', 'ClientId'),
             'creatorCMSUser' => array(self::BELONGS_TO, 'Cmsuser', 'CreatorUserId'),
             'modifierCMSUser' => array(self::BELONGS_TO, 'Cmsuser', 'ModifierUserId'),
-            'projectType' => array(self::BELONGS_TO, 'Projecttype', 'ProjectTypeId'),
+            'projectType' => array(self::BELONGS_TO, 'ProjectType', 'ProjectTypeId'),
             'users' => array(self::MANY_MANY, 'User', 'userproject(UserId, ProjectId)'),
             'subjectTaught' => array(self::BELONGS_TO, 'ProjectSubjectTaught', 'SubjectTaughtId'),
             'courseType' => array(self::BELONGS_TO, 'ProjectCourseType', 'CourseTypeId'),
