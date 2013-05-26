@@ -24,7 +24,7 @@ return array(
             'hash' => 'sha1',
             'sendActivationMail' => false,
             'activeAfterRegister' => true,
-            'autoLogin' => true,
+            'autoLogin' => false,
             'tableUsers' => "user",
             "tableProfiles" => "userprofile",
             "tableProfileFields" => "userprofilefield",
