@@ -98,6 +98,7 @@ class Project extends MataActiveRecord {
             "SubjectTaughtId" => "Przedmiot",
             "CourseTypeId" => "Rodzaj Zajęcia",
             "CourseLevelId" => "Poziom",
+            'ProjectPlace' => "Miejsce",
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
             'ModifierUserId' => 'Modifier Cmsuser',

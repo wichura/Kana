@@ -80,6 +80,9 @@ abstract class CMessageSource extends CApplicationComponent
 	 */
 	public function translate($category,$message,$language=null)
 	{
+//            echo "<i>" . $category . "<br/>";
+//            echo "" . $message . "</i><br/><br/>";
+            
 		if($language===null)
 			$language=Yii::app()->getLanguage();
 		if($this->forceTranslation || $language!==$this->getLanguage())

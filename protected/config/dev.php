@@ -7,8 +7,8 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Mata CMS',
-    // preloading 'log' component
-    'language' => 'en',
+    'language' => 'pl',
+    'sourceLanguage' => "en",
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
@@ -19,6 +19,18 @@ return array(
         'application.helpers.*'
     ),
     'modules' => array(
+        'user' => array(
+            'class' => "application.modules.user.UserModule",
+            'hash' => 'sha1',
+            'sendActivationMail' => false,
+            'activeAfterRegister' => true,
+            'autoLogin' => true,
+            'tableUsers' => "user",
+            "tableProfiles" => "userprofile",
+            "tableProfileFields" => "userprofilefield",
+            'returnUrl' => "/",
+            'captcha' => array('registration' => false)
+        ),
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'dev',
@@ -44,6 +56,14 @@ return array(
             ),
         ),
         'matadb' => array(
+            'connectionString' => 'mysql:host=37.123.117.163;dbname=kana',
+            'emulatePrepare' => true,
+            'username' => 'kana',
+            'password' => 'nwcG7DsRhupqyC6K',
+            'charset' => 'utf8',
+            'enableParamLogging' => true
+        ),
+        'db' => array(
             'connectionString' => 'mysql:host=37.123.117.163;dbname=kana',
             'emulatePrepare' => true,
             'username' => 'kana',
