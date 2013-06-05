@@ -83,13 +83,24 @@
 
     <?php $this->endWidget(); ?>
     <script>
+        $("#Profile_IncomePerPerson, #Profile_NoOfPeopleInHousehold").on("keyup", calculateAverageIncome);
+
+        function calculateAverageIncome() {
+
+            var incomePerPerson = $("#Profile_IncomePerPerson").val();
+            var noOfPeopleInHousehold = $("#Profile_NoOfPeopleInHousehold").val();
+
+            if (incomePerPerson != "" && noOfPeopleInHousehold != "" &&
+                    parseInt(incomePerPerson) != NaN && parseInt(noOfPeopleInHousehold) != NaN)
+                $("#Profile_AverageIncome").val(incomePerPerson / noOfPeopleInHousehold)
+        }
+
 
         $(window).ready(function() {
-
             $("#Profile_IsStudent").parents(".row").first().hide()
             if (<?php echo $profile->IsStudent ?> == false) {
                 $("#Profile_PlaceOfBirth, #Profile_DateOfBirth, #Profile_TelephoneGuardian, #Profile_EmailGuardian, " +
-                        "#Profile_IncomePerPerson, #Profile_NoOfPeopleInHousehold, #Profile_AverageIncome, #Profile_StudentStatus").each(function(i, el) {
+                        "#Profile_IncomePerPerson, #Profile_Pesel, #Profile_NoOfPeopleInHousehold, #Profile_AverageIncome, #Profile_StudentStatus").each(function(i, el) {
                     $(el).val(null)
                     $(el).parents(".row").first().hide();
                 });

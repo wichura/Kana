@@ -25,8 +25,8 @@ class SexDropDown extends UWdropDownDep {
         if ($this->params['emptyField'])
             $list[0] = $this->params['emptyField'];
 
-        $list["m"] = "Male";
-        $list["f"] = "Female";
+        $list["m"] = "Mężczyzna";
+        $list["f"] = "Kobieta";
 
         return CHtml::activeDropDownList($model, $field->varname, $list, $htmlOptions = array(
                     'ajax' => array(

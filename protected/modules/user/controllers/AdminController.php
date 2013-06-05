@@ -123,7 +123,6 @@ class AdminController extends MataModuleController {
                     $this->addUserToProjects($model->id, $_POST["projectSelector"]);
 
                 FlashMessage::setStandardModelUpdateMessage($model);
-
                 $this->redirect(array('admin'));
             }
             else

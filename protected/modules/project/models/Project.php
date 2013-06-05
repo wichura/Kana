@@ -43,7 +43,7 @@ class Project extends MataActiveRecord {
             'with' => array(
                 "users" => array(
                     "joinType" => "INNER JOIN",
-                    "condition" => "UserId = " . Yii::app()->user->getId()
+                    "condition" => $this->getTableAlias(false, false) . ".UserId = " . Yii::app()->user->getId()
                 )
             )
         );

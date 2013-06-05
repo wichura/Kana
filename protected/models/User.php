@@ -159,8 +159,6 @@ class User extends MataActiveRecord {
         // should not be searched.
 
 
-
-
         $criteria = new CDbCriteria;
         $criteria->compare('id', $this->id);
         $criteria->compare('username', $this->username, true);

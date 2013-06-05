@@ -125,14 +125,14 @@
 
 
             function showStudentFields() {
-                $("#Profile_PlaceOfBirth, #Profile_DateOfBirth, #Profile_TelephoneGuardian, #Profile_EmailGuardian, " +
+                $("#Profile_PlaceOfBirth, #Profile_Pesel, #Profile_DateOfBirth, #Profile_TelephoneGuardian, #Profile_EmailGuardian, " +
                         "#Profile_IncomePerPerson, #Profile_NoOfPeopleInHousehold, #Profile_AverageIncome, #Profile_StudentStatus").each(function(i, el) {
                     $(el).parents(".row").first().show();
                 });
             }
 
             function hideStudentFields() {
-                $("#Profile_PlaceOfBirth, #Profile_DateOfBirth, #Profile_TelephoneGuardian, #Profile_EmailGuardian, " +
+                $("#Profile_PlaceOfBirth, #Profile_Pesel, #Profile_DateOfBirth, #Profile_TelephoneGuardian, #Profile_EmailGuardian, " +
                         "#Profile_IncomePerPerson, #Profile_NoOfPeopleInHousehold, #Profile_AverageIncome, #Profile_StudentStatus").each(function(i, el) {
                     $(el).val(null)
                     $(el).parents(".row").first().hide();
