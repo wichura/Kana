@@ -19,7 +19,7 @@ return array(
         'application.helpers.*'
     ),
     'modules' => array(
-        'user' => array(
+       'user' => array(
             'class' => "application.modules.user.UserModule",
             'hash' => 'sha1',
             'sendActivationMail' => false,
