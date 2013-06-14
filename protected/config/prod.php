@@ -56,18 +56,18 @@ return array(
             ),
         ),
         'matadb' => array(
-            'connectionString' => 'mysql:host=37.123.117.163;dbname=kana',
+            'connectionString' => 'mysql:host=83.170.88.249;dbname=kana',
             'emulatePrepare' => true,
             'username' => 'kana',
-            'password' => 'nwcG7DsRhupqyC6K',
+            'password' => '1fDx2cG7DsXhupqyC61',
             'charset' => 'utf8',
             'enableParamLogging' => true
         ),
         'db' => array(
-            'connectionString' => 'mysql:host=37.123.117.163;dbname=kana',
+            'connectionString' => 'mysql:host=83.170.88.249;dbname=kana',
             'emulatePrepare' => true,
             'username' => 'kana',
-            'password' => 'nwcG7DsRhupqyC6K',
+            'password' => '1fDx2cG7DsXhupqyC61',
             'charset' => 'utf8',
             'enableParamLogging' => true
         ),
