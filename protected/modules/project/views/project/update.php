@@ -16,9 +16,14 @@
 
 <?php
 foreach ($participants as $participant) {
-    echo Html::gravatar($participant->email, $participant->getLabel()) . " ";
+    echo CHtml::link(Html::gravatar($participant->email, $participant->getLabel(), array(
+        "data-toggle" => "tooltip",
+        "data-original-title" => $participant->getLabel()
+    )) . " ", "/user/admin/update/id/" . $participant->id);
 }
 ?>
+<br/>
+<a href="/project/project/toCSV/id/<?php echo $model->Id ?>">Exportuj do Excela</a>
 <br/><br/>
 
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>
@@ -27,5 +32,6 @@ foreach ($participants as $participant) {
         function getVersions(url) {
             mata.dialogBox.renderView("Previous Versions", url)
         }
-
+        
+        $(".avatar").tooltip()
 </script>

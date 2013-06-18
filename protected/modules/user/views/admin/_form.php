@@ -10,6 +10,7 @@
 
     <?php echo $form->errorSummary(array($model, $profile)); ?>
 
+    
     <div class="row">
         <?php echo $form->labelEx($model, 'username'); ?>
         <?php echo $form->textField($model, 'username', array('size' => 20, 'maxlength' => 20)); ?>

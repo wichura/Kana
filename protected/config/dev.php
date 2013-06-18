@@ -42,7 +42,7 @@ return array(
         'client',
         'contentBlock',
         'project' => array(
-            "class" => "application.modules.project.ProjectModule",
+            "class" => "application.modules.project.ProjectModule"
         )
     ),
     'components' => array(

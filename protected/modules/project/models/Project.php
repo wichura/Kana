@@ -37,12 +37,12 @@ class Project extends MataActiveRecord {
     public function tableName() {
         return 'project';
     }
-    
+
     public function defaultScope() {
         return array();
     }
 
-     public function scopes() {
+    public function scopes() {
         return array(
             'users' => array(
                 'with' => array(
@@ -62,12 +62,14 @@ class Project extends MataActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
+            array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, 
+                AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
             array('ProjectTypeId', 'length', 'max' => 2),
             array('ProjectKey', 'length', 'max' => 32),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, SubjectTaughtId, CourseTypeId, CourseLevelId, ModifierUserId', 'safe', 'on' => 'search'),
+            array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, 
+                SubjectTaughtId,NoOfParticipants, CourseTypeId, CourseLevelId, ModifierUserId', 'safe', 'on' => 'search'),
         );
     }
 
@@ -108,6 +110,7 @@ class Project extends MataActiveRecord {
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
             'ModifierUserId' => 'Modifier Cmsuser',
+            "NoOfParticipants" => "Uczestników"
         );
     }
 
@@ -196,7 +199,8 @@ class Project extends MataActiveRecord {
     }
 
     public function getSortableAttributes() {
-        return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId", "CourseTypeId", "CourseLevelId", "ProjectTypeId");
+        return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId",
+            "CourseTypeId", "CourseLevelId", "ProjectTypeId");
     }
 
 }

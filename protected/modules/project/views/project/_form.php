@@ -47,11 +47,15 @@
         <?php echo $form->dropDownList($model, "CourseLevelId", CHtml::listData(ProjectCourseLevel::model()->findAll(), "Id", "Name"), $htmlOptionsDisabledOnUpdate) ?>
         <?php echo $form->error($model, 'CourseLevelId'); ?>
     </div>
-    
+
     <div class="row">
         <?php echo $form->labelEx($model, 'ProjectPlace'); ?>
         <?php echo $form->textField($model, 'ProjectPlace', array('size' => 20, 'maxlength' => 20)); ?>
         <?php echo $form->error($model, 'ProjectPlace'); ?>
+
+        <?php if ($model->ProjectPlace != null): ?>
+             <a target="_blank" href="https://maps.google.co.uk/?q=<?php echo $model->ProjectPlace ?>"> Mapa</a>
+            <?php endif; ?>
     </div>
 
     <div class="row buttons">

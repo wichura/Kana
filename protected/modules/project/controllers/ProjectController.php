@@ -10,4 +10,13 @@ class ProjectController extends MataModuleController {
         $this->widget("project.widgets.projectSelector.ProjectSelector");
     }
 
+    public function actionToCSV($id) {
+        
+        $project = Project::model()->findByPk($id);
+        
+        User::model()->with("profile", array("projects" => array(
+        "condition" => "projects.Id = " . $id
+        )))->findAllToCSV($project->getLabel() . " - uczestnicy");
+    }
+
 }
