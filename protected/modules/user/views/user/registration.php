@@ -141,3 +141,25 @@
         </script>
     </div><!-- form -->
 <?php endif; ?>
+
+    
+<script>
+        
+        var userNameManualInput = false;
+        
+        
+    $(window).ready(function() {
+        
+         $("#RegistrationForm_username").on("keyup", function() {
+             userNameManualInput = true;
+         })
+
+        $("#Profile_FirstName, #Profile_LastName").on("keyup", function() {
+            if (userNameManualInput == false) {
+                $("#RegistrationForm_username").val($("#Profile_FirstName").val()[0] + $("#Profile_LastName").val())
+            }
+        })
+
+
+    })
+</script>

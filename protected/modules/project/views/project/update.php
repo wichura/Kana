@@ -15,12 +15,20 @@
 <?php endif; ?>
 
 <?php
-foreach ($participants as $participant) {
+foreach ($participants as $participant): ?>
+
+<!--
     echo CHtml::link(Html::gravatar($participant->email, $participant->getLabel(), array(
         "data-toggle" => "tooltip",
         "data-original-title" => $participant->getLabel()
     )) . " ", "/user/admin/update/id/" . $participant->id);
-}
+-->
+
+<li><?php echo $participant->getLabel() ?></li>
+
+
+<?php 
+endforeach;
 ?>
 <br/>
 <a href="/project/project/toCSV/id/<?php echo $model->Id ?>">Exportuj do Excela</a>
