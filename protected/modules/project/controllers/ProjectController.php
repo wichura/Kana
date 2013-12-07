@@ -18,4 +18,21 @@ class ProjectController extends MataModuleController {
         )))->findAllToCSV($project->getLabel() . " - uczestnicy");
     }
 
+    
+    public function actionX() {
+        
+        
+        $projects = Project::model()->findAllByAttributes(array(
+            "Name" => "G-ND-JU-JA-O-0045",
+            "CreatorUserId" => 1
+        ));
+        
+        
+        
+        foreach ($projects as $project) {
+            echo $project->Name . "<br/><br/>";
+        }
+        
+        
+    }
 }

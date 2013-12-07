@@ -57,7 +57,7 @@ class AdminController extends MataModuleController {
     /**
      * Displays a particular model.
      */
-    public function actionView() {
+    public function actionView($id) {
         $model = $this->loadModel();
         $this->render('view', array(
             'model' => $model,
@@ -99,9 +99,9 @@ class AdminController extends MataModuleController {
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionUpdate() {
+    public function actionUpdate($id) {
 
-        $model = $this->loadModel();
+        $model = $this->loadModel($id);
         $profile = $model->profile;
         $this->performAjaxValidation(array($model, $profile));
 
@@ -180,7 +180,7 @@ class AdminController extends MataModuleController {
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      */
-    public function actionDelete() {
+    public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $model = $this->loadModel();
@@ -214,7 +214,7 @@ class AdminController extends MataModuleController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      */
-    public function loadModel() {
+    public function loadModel($id) {
         if ($this->_model === null) {
             if (isset($_GET['id']))
                 $this->_model = User::model()->notsafe()->findbyPk($_GET['id']);

@@ -3,13 +3,12 @@
 class LoginController extends CController {
 
     public $defaultAction = 'login';
-    public $layout = 'mata.views.layouts.main';
+    public $layout = 'mata.views.layouts.mataMain';
 
     /**
      * Displays the login page
      */
     public function actionLogin() {
-
         if (Yii::app()->user->isGuest) {
             $model = new UserLogin;
             // collect user input data

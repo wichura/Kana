@@ -65,6 +65,7 @@ class Project extends MataActiveRecord {
             array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, 
                 AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
             array('ProjectTypeId', 'length', 'max' => 2),
+             array('Description', 'unique'),
             array('ProjectKey', 'length', 'max' => 32),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -110,7 +111,8 @@ class Project extends MataActiveRecord {
             'DateModified' => 'Date Modified',
             'CreatorUserId' => 'Creator Cmsuser',
             'ModifierUserId' => 'Modifier Cmsuser',
-            "NoOfParticipants" => "Uczestników"
+            "NoOfParticipants" => "Uczestników",
+            "Description" => "Opis"
         );
     }
 
@@ -159,7 +161,7 @@ class Project extends MataActiveRecord {
     }
 
     public function getLabel() {
-        return $this->Name;
+        return $this->Description;
     }
 
     public function beforeValidate() {

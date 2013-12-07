@@ -24,6 +24,13 @@
         <?php echo $form->error($model, 'ProjectTypeId'); ?>
     </div>
 
+     <div class="row">
+        <?php echo $form->labelEx($model, 'Description'); ?>
+        <?php echo $form->textField($model, 'Description', array('size' => 20, 'maxlength' => 128)); ?>
+        <?php echo $form->error($model, 'Description'); ?>
+    </div>
+
+    
     <div class="row">
         <?php echo $form->labelEx($model, 'CourseTypeId'); ?>
         <?php echo $form->dropDownList($model, "CourseTypeId", CHtml::listData(ProjectCourseType::model()->findAll(), "Id", "Name"), $htmlOptionsDisabledOnUpdate) ?>
