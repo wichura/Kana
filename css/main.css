@@ -2,6 +2,7 @@ html, body {
     margin: 0px;
     padding: 0px;
     font-size: 12px;
+    font-family: Verdana !important;
 }
 
 html, body, p, a, h1, h2, h3, h4, h5, h6 {
@@ -9,6 +10,7 @@ html, body, p, a, h1, h2, h3, h4, h5, h6 {
     font-smooth:always;
      -webkit-tap-highlight-color: rgba(0,0,0,0); 
     -webkit-font-smoothing: antialiased;
+     font-family: Verdana !important;
 }
 
 a, a:active, a:visited {
