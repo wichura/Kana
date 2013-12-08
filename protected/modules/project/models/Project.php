@@ -161,7 +161,7 @@ class Project extends MataActiveRecord {
     }
 
     public function getLabel() {
-        return $this->Description;
+        return $this->Name . " - " . $this->Description;
     }
 
     public function beforeValidate() {
