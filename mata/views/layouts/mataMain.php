@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" type="text/css" href="/css/main.css" />
 
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->mataAssetUrl ?>/js/lib/bootstrap-tooltip.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->mataAssetUrl ?>/js/lib/jquery.transit.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
