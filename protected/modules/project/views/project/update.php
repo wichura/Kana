@@ -3,7 +3,8 @@
 
         <?php
         $participants = User::model()->with(array("projects" => array(
-                        "condition" => "projects.Id = " . $model->Id
+                        "condition" => "projects.Id = " . $model->Id,
+                        "order" => "LastName ASC"
             )))->findAll();
         ?>
         <?php echo count($participants) ?> uczestników</span></h1>
@@ -13,8 +14,10 @@
         <a onclick='getVersions("<?php echo "/$modelNameLowerCase/$modelNameLowerCase/getVersions/id/$model->Id" ?>")' href='#'>Versions</a>
     </div>
 <?php endif; ?>
-
+<ol style="list-style: decimal">
 <?php
+
+
 foreach ($participants as $participant): ?>
 
 <!--
@@ -24,12 +27,13 @@ foreach ($participants as $participant): ?>
     )) . " ", "/user/admin/update/id/" . $participant->id);
 -->
 
-<li><?php echo $participant->getLabel() ?></li>
+<li><a href="/user/admin/update/id/<?php echo $participant->id ?>"><?php echo $participant->getLabel() ?></a></li>
 
 
 <?php 
 endforeach;
 ?>
+</ol>
 <br/>
 <a href="/project/project/toCSV/id/<?php echo $model->Id ?>">Exportuj do Excela</a>
 <br/><br/>

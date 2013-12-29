@@ -49,10 +49,10 @@ class Project extends MataActiveRecord {
                     "users" => array(
                         "joinType" => "INNER JOIN",
                         "condition" => "UserId = " . Yii::app()->user->getId()
+                        )
                     )
                 )
-            )
-        );
+            );
     }
 
     /**
@@ -65,13 +65,14 @@ class Project extends MataActiveRecord {
             array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, 
                 AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
             array('ProjectTypeId', 'length', 'max' => 2),
-             array('Description', 'unique'),
+            array('Description', 'unique'),
+            array("StartDate, EndDate", "safe"),
             array('ProjectKey', 'length', 'max' => 32),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('Id, DateCreated, Name, ProjectTypeId, ProjectKey, DateModified, CreatorUserId, 
                 SubjectTaughtId,NoOfParticipants, CourseTypeId, CourseLevelId, ModifierUserId', 'safe', 'on' => 'search'),
-        );
+            );
     }
 
     /**
@@ -90,7 +91,7 @@ class Project extends MataActiveRecord {
             'courseType' => array(self::BELONGS_TO, 'ProjectCourseType', 'CourseTypeId'),
             'subjectLevel' => array(self::BELONGS_TO, 'ProjectCourseLevel', 'CourseLevelId'),
             'ageGroup' => array(self::BELONGS_TO, 'ProjectAgeGroup', 'AgeGroupId')
-        );
+            );
     }
 
     /**
@@ -112,8 +113,10 @@ class Project extends MataActiveRecord {
             'CreatorUserId' => 'Creator Cmsuser',
             'ModifierUserId' => 'Modifier Cmsuser',
             "NoOfParticipants" => "Uczestników",
-            "Description" => "Opis"
-        );
+            "Description" => "Opis",
+            "StartDate" => "Data Rozpoczecia",
+            "EndDate" => "Data zakonczenia"
+            );
     }
 
     /**
@@ -141,7 +144,7 @@ class Project extends MataActiveRecord {
 
             $criteria->with = array(
                 "subjectTaught", "projectType", "courseType", "subjectLevel", "ageGroup"
-            );
+                );
 
             $criteria->addSearchCondition('subjectTaught.Name', $filter, true, "OR", "LIKE");
             $criteria->addSearchCondition('projectType.Name', $filter, true, "OR", "LIKE");
@@ -156,8 +159,8 @@ class Project extends MataActiveRecord {
             'criteria' => $criteria,
             "sort" => array(
                 "defaultOrder" => "t.Name ASC"
-            )
-        ));
+                )
+            ));
     }
 
     public function getLabel() {
@@ -174,11 +177,11 @@ class Project extends MataActiveRecord {
             $newId = str_pad(current($newId), 4, "0", STR_PAD_LEFT);
 
             $this->Name = ProjectType::model()->findByPk($this->ProjectTypeId)->Code . "-" .
-                    ProjectCourseType::model()->findByPk($this->CourseTypeId)->Code . "-" .
-                    ProjectAgeGroup::model()->findByPk($this->AgeGroupId)->Code . "-" .
-                    ProjectSubjectTaught::model()->findByPk($this->SubjectTaughtId)->Code . "-" .
-                    ProjectCourseLevel::model()->findByPk($this->CourseLevelId)->Code . "-" .
-                    $newId;
+            ProjectCourseType::model()->findByPk($this->CourseTypeId)->Code . "-" .
+            ProjectAgeGroup::model()->findByPk($this->AgeGroupId)->Code . "-" .
+            ProjectSubjectTaught::model()->findByPk($this->SubjectTaughtId)->Code . "-" .
+            ProjectCourseLevel::model()->findByPk($this->CourseLevelId)->Code . "-" .
+            $newId;
         }
 
         return parent::beforeValidate();
@@ -191,7 +194,7 @@ class Project extends MataActiveRecord {
             $linking->attributes = array(
                 "ProjectId" => $this->Id,
                 "UserId" => Yii::app()->user->getId()
-            );
+                );
 
             if ($linking->save() == false)
                 throw new CHttpException("Could not create the linking between the new project and the user due to: " . $linking->getFirstError());
