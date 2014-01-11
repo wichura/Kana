@@ -15,8 +15,6 @@
 </style>
 
 
-
-
 <div class="registry-column">
 <li>Students</li>
 
@@ -29,8 +27,6 @@ foreach ($register as $entry):
 		break;
 
 	?>
-
-	
 
 	<li><?php echo $entry->profile->LastName . " " . $entry->profile->FirstName ?></li>
 

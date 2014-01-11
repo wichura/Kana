@@ -181,9 +181,9 @@ class AdminController extends MataModuleController {
      * If deletion is successful, the browser will be redirected to the 'index' page.
      */
     public function actionDelete($id) {
-        if (Yii::app()->request->isPostRequest) {
+        // if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $model = $this->loadModel();
+            $model = $this->loadModel($id);
             $profile = Profile::model()->findByPk($model->id);
 
             // Make sure profile exists
@@ -194,9 +194,9 @@ class AdminController extends MataModuleController {
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_POST['ajax']))
                 $this->redirect(array('/user/admin'));
-        }
-        else
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        // }
+        // else
+        //     throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
     /**
