@@ -14,6 +14,7 @@ class MataWebApplication extends CWebApplication {
     function __construct($config = null) {
 
         $mataFolderPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "mata";
+        // $this->setBasePath(dirname(__FILE__) . DIRECTORY_SEPARATOR);
         Yii::setPathOfAlias("mata", $mataFolderPath);
 
         $mataConfig = require($mataFolderPath . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . (YII_DEBUG ? "dev.php" : "prod.php"));

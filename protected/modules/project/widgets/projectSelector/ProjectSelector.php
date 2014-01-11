@@ -10,7 +10,7 @@
  *
  * @author wichura
  */
-class ProjectSelector extends BaseWidget {
+class ProjectSelector extends MBaseWidget {
 
     public $projects;
     public $activeProjects;

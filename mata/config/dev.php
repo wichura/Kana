@@ -11,6 +11,7 @@ return array(
 		'mata.widgets.base.*',
 		"mata.helpers.*",
 		'mata.modules.project.models.*',
+		'mata.widgets.base'
 		),
 	'modules' => array(
 		'user' => array(

@@ -16,7 +16,10 @@ return array(
         'application.controllers.*',
         'application.models.*',
         'application.components.*',
-        'application.helpers.*'
+        'application.helpers.*',
+        'application.widgets.base.*',
+        'application.modules.user.models.*',
+        'application.modules.user.components.*'
     ),
     'modules' => array(
        'user' => array(

@@ -5,7 +5,7 @@
  *
  * @author marcinwiatr
  */
-class BaseWidget extends CWidget {
+class MBaseWidget extends CWidget {
 
     protected $assetsBase;
 

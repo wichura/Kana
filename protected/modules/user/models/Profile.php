@@ -98,6 +98,7 @@ class Profile extends UActiveRecord
 			array_push($rules,array(implode(',',$numerical), 'numerical', 'integerOnly'=>true));
 			array_push($rules,array(implode(',',$float), 'type', 'type'=>'float'));
 			array_push($rules,array(implode(',',$decimal), 'match', 'pattern' => '/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/'));
+			array_push($rules,array("email", 'safe'));
 			self::$_rules = $rules;
 		}
 		return self::$_rules;
