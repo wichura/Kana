@@ -63,7 +63,7 @@ class Project extends MataActiveRecord {
         // will receive user inputs.
         return array(
             array('ProjectTypeId, ProjectKey, CreatorUserId, ProjectPlace, ModifierUserId, 
-                AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId', 'required'),
+                AgeGroupId, SubjectTaughtId, CourseTypeId, CourseLevelId, TeacherUserId', 'required'),
             array('ProjectTypeId', 'length', 'max' => 2),
             array('Description', 'unique'),
             array("StartDate, EndDate", "safe"),
@@ -207,5 +207,4 @@ class Project extends MataActiveRecord {
         return array("Name", "DateCreated", "SubjectTaughtId", "AgeGroupId",
             "CourseTypeId", "CourseLevelId", "ProjectTypeId");
     }
-
 }

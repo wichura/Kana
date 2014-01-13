@@ -32,7 +32,7 @@ abstract class MataModuleController extends MataController {
             if ($model->save()) {
                 FlashMessage::setStandardModelCreateMessage($model);
                 Yii::app()->eventLog->record(Yii::app()->user->FirstName . " " . Yii::app()->user->LastName . " created a new project " .
-                        $model->getLabel());
+                    $model->getLabel());
 
                 $pathSegments = explode("/", Yii::app()->request->pathInfo);
                 $this->redirect(array("/$pathSegments[0]/$pathSegments[1]"));
@@ -42,7 +42,7 @@ abstract class MataModuleController extends MataController {
         $this->render(file_exists($this->getViewFile("create")) ? "create" : 'mata.views.module.create', array(
             'model' => $model,
             "modelName" => $modelClassName
-        ));
+            ));
     }
 
     /**
@@ -51,6 +51,7 @@ abstract class MataModuleController extends MataController {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
+
         $model = $this->loadModel($id);
         $modelClassName = get_class($this->getModel());
 
@@ -60,7 +61,7 @@ abstract class MataModuleController extends MataController {
 
         if (isset($_POST[$modelClassName])) {
             $model->attributes = $_POST[$modelClassName];
-           
+            
             if ($model->save()) {
                 FlashMessage::setStandardModelUpdateMessage($model);
 
@@ -75,7 +76,7 @@ abstract class MataModuleController extends MataController {
             'model' => $model,
             "modelName" => $modelClassName,
             "modelNameLowerCase" => strtolower($modelClassName)
-        ));
+            ));
     }
 
     /**
@@ -117,7 +118,7 @@ abstract class MataModuleController extends MataController {
             'model' => $model,
             "modelName" => $modelClassName,
             "modelNameLowerCase" => strtolower($modelClassName)
-        ));
+            ));
     }
 
     public function actionView($id) {
@@ -128,7 +129,7 @@ abstract class MataModuleController extends MataController {
         
         $this->render(file_exists($this->getViewFile("view")) ? "view" : 'mata.views.module.view', array(
             'model' => $model
-        ));
+            ));
     }
 
     /**
@@ -137,23 +138,23 @@ abstract class MataModuleController extends MataController {
      */
     protected function performAjaxValidation($model) {
         if (isset($_POST['ajax']) &&
-                $_POST['ajax'] === 'client-' .
-                strtolower(get_class($this->getModel()))) {
+            $_POST['ajax'] === 'client-' .
+            strtolower(get_class($this->getModel()))) {
             echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
+        Yii::app()->end();
     }
+}
 
-    public function actionGetVersions() {
-        $model = $this->loadModel(Yii::app()->request->getParam("id"));
+public function actionGetVersions() {
+    $model = $this->loadModel(Yii::app()->request->getParam("id"));
 
-        if (array_key_exists("versions", $model->behaviors()))
-            $this->renderPartial("mata.views.versions._versions", array(
-                "versions" => $model->getAllVersions()
+    if (array_key_exists("versions", $model->behaviors()))
+        $this->renderPartial("mata.views.versions._versions", array(
+            "versions" => $model->getAllVersions()
             ));
-    }
+}
 
-    public abstract function getModel();
+public abstract function getModel();
 }
 
 ?>
