@@ -31,19 +31,19 @@
             <?php 
 
             $this->widget('application.widgets.mAutoComplete.MAutoComplete',array(
-               'name'=>'Project[TeacherUserId]',
-               'value' => $model->TeacherUserId,
+             'name'=>'Project[TeacherUserId]',
+             'value' => $model->TeacherUserId,
                // 'value' => User::model()->findByPk($model->TeacherUserId)->getLabel(),
-               'source'=> MHtml::autocompleteData(User::model()->findAll())
-               ));
+             'source'=> MHtml::autocompleteData(User::model()->findAll())
+             ));
 
-               ?>
+             ?>
 
-               <?php echo $form->error($model, 'TeacherUserId'); ?>
-           </div>
+             <?php echo $form->error($model, 'TeacherUserId'); ?>
+         </div>
 
 
-           <div class="row">
+         <div class="row">
             <?php echo $form->labelEx($model, 'Description'); ?>
             <?php echo $form->textField($model, 'Description', array('size' => 20, 'maxlength' => 128)); ?>
             <?php echo $form->error($model, 'Description'); ?>
@@ -98,9 +98,9 @@
                     "value" => $model->EndDate,
                          // additional javascript options for the date picker plugin
                     'options'=>array(
-                     'showAnim'=>'fold',
-                     'dateFormat' => "yy-mm-dd"
-                     )
+                       'showAnim'=>'fold',
+                       'dateFormat' => "yy-mm-dd"
+                       )
                     ));
                     ?>
                     <?php echo $form->error($model, 'EndDate'); ?>
@@ -112,24 +112,43 @@
                     <?php echo $form->error($model, 'ProjectPlace'); ?>
 
                     <?php if ($model->ProjectPlace != null): ?>
-                       <a target="_blank" href="https://maps.google.co.uk/?q=<?php echo $model->ProjectPlace ?>"> Mapa</a>
-                   <?php endif; ?>
-               </div>
+                     <a target="_blank" href="https://maps.google.co.uk/?q=<?php echo $model->ProjectPlace ?>"> Mapa</a>
+                 <?php endif; ?>
+             </div>
 
-               <div class="row buttons">
+             <div class="row buttons">
                 <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t("mata", "Create") : Yii::t("mata", "Update")); ?>
             </div>
 
             <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+        </div><!-- form -->
 
 
-<script>
+        <script>
 
 
-$(window).ready(function() {
-    
-})
+            $(window).ready(function() {
 
-</script>
+                setTimeout(function() {
+                    $('#Project_TeacherUserId').on("autocompleteselect", function(event, ui) {
+                        $(this).val(ui.item.label);
+                        $("#" + $(this).attr("id") + "-mAutoComplete").val(ui.item.value)
+                        event.stopPropagation();
+                        return false;
+                    });
+                }, 400)
+
+                $('#Project_TeacherUserId').on("autocompletecreate", function( event, ui ) {
+                    // create the hidden input which will receive actual values
+                    
+                    $(this).after($("<input />").attr({
+                        "type" : "hidden",
+                        "name" : $(this).attr("name"),
+                        "id" : $(this).attr("id") + "-mAutoComplete"
+                    })) 
+                } );
+
+            })
+
+        </script>
