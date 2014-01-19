@@ -18,9 +18,6 @@
         ?>
 
 
-
-
-
         <?php echo $form->errorSummary($model); ?>
         <div class="row">
             <?php echo $form->labelEx($model, 'ProjectTypeId'); ?>
@@ -33,20 +30,20 @@
             <?php //echo $form->dropDownList($model, "TeacherUserId", CHtml::listData(User::model()->findAll(), "id", "username")) ?>
             <?php 
 
-            $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
-             'name'=>'Project[TeacherUserId]',
-             'value' => $model->TeacherUserId,
+            $this->widget('application.widgets.mAutoComplete.MAutoComplete',array(
+               'name'=>'Project[TeacherUserId]',
+               'value' => $model->TeacherUserId,
                // 'value' => User::model()->findByPk($model->TeacherUserId)->getLabel(),
-             'source'=> MHtml::autocompleteData(User::model()->findAll())
-             ));
+               'source'=> MHtml::autocompleteData(User::model()->findAll())
+               ));
 
-             ?>
+               ?>
 
-             <?php echo $form->error($model, 'TeacherUserId'); ?>
-         </div>
+               <?php echo $form->error($model, 'TeacherUserId'); ?>
+           </div>
 
 
-         <div class="row">
+           <div class="row">
             <?php echo $form->labelEx($model, 'Description'); ?>
             <?php echo $form->textField($model, 'Description', array('size' => 20, 'maxlength' => 128)); ?>
             <?php echo $form->error($model, 'Description'); ?>
@@ -101,9 +98,9 @@
                     "value" => $model->EndDate,
                          // additional javascript options for the date picker plugin
                     'options'=>array(
-                       'showAnim'=>'fold',
-                       'dateFormat' => "yy-mm-dd"
-                       )
+                     'showAnim'=>'fold',
+                     'dateFormat' => "yy-mm-dd"
+                     )
                     ));
                     ?>
                     <?php echo $form->error($model, 'EndDate'); ?>
@@ -115,14 +112,24 @@
                     <?php echo $form->error($model, 'ProjectPlace'); ?>
 
                     <?php if ($model->ProjectPlace != null): ?>
-                     <a target="_blank" href="https://maps.google.co.uk/?q=<?php echo $model->ProjectPlace ?>"> Mapa</a>
-                 <?php endif; ?>
-             </div>
+                       <a target="_blank" href="https://maps.google.co.uk/?q=<?php echo $model->ProjectPlace ?>"> Mapa</a>
+                   <?php endif; ?>
+               </div>
 
-             <div class="row buttons">
+               <div class="row buttons">
                 <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t("mata", "Create") : Yii::t("mata", "Update")); ?>
             </div>
 
             <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+
+<script>
+
+
+$(window).ready(function() {
+    
+})
+
+</script>
